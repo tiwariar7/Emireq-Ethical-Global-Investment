@@ -1,0 +1,49 @@
+/* Three.js specific overrides and optimizations */
+
+/* Disable pointer events on 3D canvas to improve performance */
+canvas {
+  pointer-events: none;
+}
+
+/* Custom cursor for interactive 3D elements */
+.three-interactive {
+  cursor: pointer;
+}
+
+/* Performance optimizations for 3D rendering */
+.three-container {
+  /* Force hardware acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Loading states for 3D components */
+.three-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .three-container {
+    /* Reduce complexity on mobile */
+    filter: blur(0.5px);
+  }
+
+  .three-interactive {
+    /* Larger touch targets on mobile */
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
